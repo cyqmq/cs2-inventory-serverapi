@@ -3,9 +3,9 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import { api } from "~/api.server";
-import { middleware } from "~/middleware.server";
-import { handleUserCachedResponse } from "~/models/user-cache.server";
+import { api } from "@api/api.server";
+import { middleware } from "@api/middleware.server";
+import { handleUserCachedResponse } from "@api/models/user-cache.server";
 import type { Route } from "./+types/api.inventory.$userId[.]json._index";
 
 export const ApiInventoryUserIdUrl = "/api/inventory/$userId.json";

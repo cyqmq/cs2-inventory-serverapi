@@ -3,8 +3,8 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import { DEFAULT_APP_NAME } from "~/app-defaults";
-import { appName } from "~/models/rule.server";
+import { DEFAULT_APP_NAME } from "@web/app-defaults";
+import { appName } from "@api/models/rule.server";
 
 export async function loader() {
   const name = (await appName.get()) || DEFAULT_APP_NAME;

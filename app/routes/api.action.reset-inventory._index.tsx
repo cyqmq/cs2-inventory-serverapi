@@ -5,10 +5,10 @@
 
 import { CS2Inventory } from "@ianlucas/cs2-lib";
 import { redirect } from "react-router";
-import { api } from "~/api.server";
-import { requireUser } from "~/auth.server";
-import { middleware } from "~/middleware.server";
-import { updateUserInventory } from "~/models/user.server";
+import { api } from "@api/api.server";
+import { requireUser } from "@api/auth.server";
+import { middleware } from "@api/middleware.server";
+import { updateUserInventory } from "@api/models/user.server";
 import type { Route } from "./+types/api.action.reset-inventory._index";
 
 export const ApiActionResetInventoryUrl = "/api/action/reset-inventory";

@@ -3,8 +3,8 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import { api } from "~/api.server";
-import { middleware } from "~/middleware.server";
+import { api } from "@api/api.server";
+import { middleware } from "@api/middleware.server";
 import type { Route } from "./+types/api.$";
 
 export const loader = api(async ({ request }: Route.LoaderArgs) => {

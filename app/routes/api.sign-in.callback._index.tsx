@@ -4,10 +4,10 @@
  *--------------------------------------------------------------------------------------------*/
 
 import { redirect } from "react-router";
-import { api } from "~/api.server";
-import { authenticator } from "~/auth.server";
-import { middleware } from "~/middleware.server";
-import { commitSession, getSession } from "~/session.server";
+import { api } from "@api/api.server";
+import { authenticator } from "@api/auth.server";
+import { middleware } from "@api/middleware.server";
+import { commitSession, getSession } from "@api/session.server";
 import type { Route } from "./+types/api.sign-in.callback._index";
 
 export const loader = api(async ({ request }: Route.LoaderArgs) => {

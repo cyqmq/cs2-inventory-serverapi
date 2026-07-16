@@ -1,24 +1,24 @@
 import { data } from "react-router";
-import { findRequestUser } from "~/auth.server";
-import { middleware } from "~/middleware.server";
-import { getClientRules } from "~/models/rule";
-import { steamCallbackUrl } from "~/models/rule.server";
-import { getBackground } from "~/preferences/background.server";
-import { getLanguage } from "~/preferences/language.server";
-import { getToggleable } from "~/preferences/toggleable.server";
-import { getSession } from "~/session.server";
-import { nonEmptyString } from "~/utils/misc";
+import { findRequestUser } from "@api/auth.server";
+import { middleware } from "@api/middleware.server";
+import { getClientRules } from "@api/models/rule";
+import { steamCallbackUrl } from "@api/models/rule.server";
+import { getBackground } from "@api/preferences/background.server";
+import { getLanguage } from "@api/preferences/language.server";
+import { getToggleable } from "@api/preferences/toggleable.server";
+import { getSession } from "@api/session.server";
+import { nonEmptyString } from "@shared/utils/misc";
 import {
   ASSETS_BASE_URL,
   CLOUDFLARE_ANALYTICS_TOKEN,
   SOURCE_COMMIT,
   VIEWER_ASSETS_BASE_URL,
   VIEWER_EMBED_URL
-} from "~/env.server";
+} from "@api/env.server";
 import {
   resolveViewerOriginAllowed,
   resolveViewerCatalog
-} from "~/data/viewer.server";
+} from "@api/data/viewer.server";
 import type { Route } from "./+types/api.init._index";
 
 export async function loader({ request }: Route.LoaderArgs) {

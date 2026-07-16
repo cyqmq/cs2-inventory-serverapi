@@ -8,12 +8,14 @@ import url from "node:url";
 process.env.NODE_ENV = process.env.NODE_ENV ?? "production";
 
 const port = parseInt(process.env.PORT || "3000", 10);
+const mode = process.env.API_MODE === "true" ? "api" : "web";
 const buildPath = path.resolve("build/server/index.js");
 const buildModule = await import(url.pathToFileURL(buildPath).href);
 
 const app = express();
 app.disable("x-powered-by");
 app.use(compression());
+app.use(morgan("tiny"));
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -26,14 +28,16 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(morgan("tiny"));
-
-app.use((req, res, next) => {
-  if (req.path.startsWith("/api/") || req.path === "/healthz") {
-    return next();
-  }
-  res.status(404).json({ error: "Not found" });
-});
+if (mode === "web") {
+  app.use(express.static("build/client", { maxAge: "1h" }));
+} else {
+  app.use((req, res, next) => {
+    if (req.path.startsWith("/api/") || req.path === "/healthz" || req.path === "/translations/") {
+      return next();
+    }
+    res.status(404).json({ error: "Not found" });
+  });
+}
 
 app.use(createRequestHandler({
   build: buildModule,
@@ -41,7 +45,7 @@ app.use(createRequestHandler({
 }));
 
 const server = app.listen(port, () => {
-  console.log(`[server.prod] http://localhost:${port}`);
+  console.log(`[server.prod] ${mode} mode http://localhost:${port}`);
 });
 
 ["SIGTERM", "SIGINT"].forEach((signal) => {

@@ -4,21 +4,21 @@
  *--------------------------------------------------------------------------------------------*/
 
 import { z } from "zod";
-import { api } from "~/api.server";
-import { middleware } from "~/middleware.server";
+import { api } from "@api/api.server";
+import { middleware } from "@api/middleware.server";
 import {
   API_SCOPE,
   INVENTORY_SCOPE,
   isApiKeyValid
-} from "~/models/api-credential.server";
-import { findUniqueUser, manipulateUserInventory } from "~/models/user.server";
+} from "@api/models/api-credential.server";
+import { findUniqueUser, manipulateUserInventory } from "@api/models/user.server";
 import {
   badRequest,
   methodNotAllowed,
   noContent,
   unauthorized
-} from "~/responses.server";
-import { clientInventoryItemShape } from "~/utils/shapes.server";
+} from "@api/responses.server";
+import { clientInventoryItemShape } from "@api/utils/shapes.server";
 import type { Route } from "./+types/api.add-item._index";
 
 export const action = api(async ({ request }: Route.ActionArgs) => {

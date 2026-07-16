@@ -1,4 +1,4 @@
-import { badRequest } from "~/responses.server";
+import { badRequest } from "@api/responses.server";
 import type { Route } from "./+types/api.auth.electron-config._index";
 
 const ELECTRON_SECRET = process.env.ELECTRON_AUTH_SECRET || "change-me-in-production";

@@ -5,8 +5,11 @@
   "type": "module",
   "scripts": {
     "build": "react-router build",
+    "build:api": "API_MODE=true react-router build",
     "dev": "react-router dev",
+    "dev:api": "API_MODE=true react-router dev",
     "start": "node server.prod.mjs",
+    "start:api": "API_MODE=true node server.prod.mjs",
     "db:push": "prisma db push",
     "db:generate": "prisma generate",
     "db:migrate": "prisma migrate deploy",

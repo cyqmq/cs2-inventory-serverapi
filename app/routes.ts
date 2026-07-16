@@ -9,8 +9,13 @@ const apiRoutePrefixes = [
   "index[.]html."
 ];
 
-const routes = await flatRoutes();
-export default routes.filter((route) => {
+const isApiMode = process.env.API_MODE === "true";
+
+const allRoutes = await flatRoutes();
+const filtered = allRoutes.filter((route) => {
+  if (!isApiMode) return true;
   const file = (route.file ?? "").replace(/^routes\//, "");
   return apiRoutePrefixes.some((prefix) => file.startsWith(prefix));
 });
+
+export default filtered satisfies RouteConfig;

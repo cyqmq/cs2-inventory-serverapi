@@ -5,18 +5,18 @@
 
 import { CS2Inventory, CS2UnlockedItem } from "@ianlucas/cs2-lib";
 import { z } from "zod";
-import { api } from "~/api.server";
-import { requireUser } from "~/auth.server";
-import { middleware } from "~/middleware.server";
+import { api } from "@api/api.server";
+import { requireUser } from "@api/auth.server";
+import { middleware } from "@api/middleware.server";
 import {
   inventoryItemAllowUnlockContainer,
   inventoryMaxItems,
   inventoryStorageUnitMaxItems
-} from "~/models/rule.server";
-import { updateUserInventory } from "~/models/user.server";
-import { conflict, methodNotAllowed } from "~/responses.server";
-import { parseInventory } from "~/utils/inventory";
-import { nonNegativeInt, positiveInt } from "~/utils/shapes";
+} from "@api/models/rule.server";
+import { updateUserInventory } from "@api/models/user.server";
+import { conflict, methodNotAllowed } from "@api/responses.server";
+import { parseInventory } from "@shared/utils/inventory";
+import { nonNegativeInt, positiveInt } from "@shared/utils/shapes";
 import type { Route } from "./+types/api.action.unlock-case._index";
 
 export const ApiActionUnlockCaseUrl = "/api/action/unlock-case";

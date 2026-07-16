@@ -4,17 +4,17 @@
  *--------------------------------------------------------------------------------------------*/
 
 import { CS2Inventory } from "@ianlucas/cs2-lib";
-import { api } from "~/api.server";
-import { middleware } from "~/middleware.server";
-import { getRules } from "~/models/rule";
+import { api } from "@api/api.server";
+import { middleware } from "@api/middleware.server";
+import { getRules } from "@api/models/rule";
 import {
   inventoryItemEquipHideModel,
   inventoryItemEquipHideType,
   inventoryMaxItems,
   inventoryStorageUnitMaxItems
-} from "~/models/rule.server";
-import { handleUserCachedResponse } from "~/models/user-cache.server";
-import { generate } from "~/utils/inventory-equipped-v4";
+} from "@api/models/rule.server";
+import { handleUserCachedResponse } from "@api/models/user-cache.server";
+import { generate } from "@shared/utils/inventory-equipped-v4";
 import type { Route } from "./+types/api.equipped.v4.$userId[.]json._index";
 
 export const ApiEquippedV4UserIdJsonUrl = "/api/equipped/v4/$userId.json";

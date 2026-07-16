@@ -11,11 +11,11 @@ import {
   RecordValue
 } from "@ianlucas/cs2-lib";
 import { z } from "zod";
-import { api } from "~/api.server";
-import { requireUser } from "~/auth.server";
-import type { ItemEditorAttributes } from "~/components/item-editor";
-import { SyncAction } from "~/data/sync";
-import { middleware } from "~/middleware.server";
+import { api } from "@api/api.server";
+import { requireUser } from "@api/auth.server";
+import type { ItemEditorAttributes } from "@api/types";
+import { SyncAction } from "@shared/data/sync";
+import { middleware } from "@api/middleware.server";
 import {
   craftAllowKeychains,
   craftAllowKeychainSeed,
@@ -61,23 +61,23 @@ import {
   inventoryItemAllowRemovePatch,
   inventoryItemAllowRemoveSticker,
   inventoryItemAllowScrapeSticker
-} from "~/models/rule.server";
-import { manipulateUserInventory } from "~/models/user.server";
-import { methodNotAllowed } from "~/responses.server";
-import { editInventoryItem } from "~/utils/inventory";
-import { hasKeys } from "~/utils/misc";
+} from "@api/models/rule.server";
+import { manipulateUserInventory } from "@api/models/user.server";
+import { methodNotAllowed } from "@api/responses.server";
+import { editInventoryItem } from "@shared/utils/inventory";
+import { hasKeys } from "@shared/utils/misc";
 import {
   nonNegativeInt,
   optionalStickerOffset,
   optionalStickerRotation,
   optionalStickerWear,
   teamShape
-} from "~/utils/shapes";
+} from "@shared/utils/shapes";
 import {
   clientInventoryItemShape,
   itemEditorAttributesShape,
   syncInventoryShape
-} from "~/utils/shapes.server";
+} from "@api/utils/shapes.server";
 import type { Route } from "./+types/api.action.sync._index";
 
 const stickerPlacementShape = {

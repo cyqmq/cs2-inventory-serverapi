@@ -5,17 +5,17 @@
 
 import { CS2Economy, ensure } from "@ianlucas/cs2-lib";
 import { z } from "zod";
-import { api } from "~/api.server";
-import { serverGlobals } from "~/globals";
-import { middleware } from "~/middleware.server";
+import { api } from "@api/api.server";
+import { serverGlobals } from "@web/globals";
+import { middleware } from "@api/middleware.server";
 import {
   API_SCOPE,
   INVENTORY_SCOPE,
   isApiKeyValid
-} from "~/models/api-credential.server";
-import { findUniqueUser, manipulateUserInventory } from "~/models/user.server";
-import { badRequest, methodNotAllowed, unauthorized } from "~/responses.server";
-import { random } from "~/utils/misc";
+} from "@api/models/api-credential.server";
+import { findUniqueUser, manipulateUserInventory } from "@api/models/user.server";
+import { badRequest, methodNotAllowed, unauthorized } from "@api/responses.server";
+import { random } from "@shared/utils/misc";
 import type { Route } from "./+types/api.add-container._index";
 
 export const action = api(async ({ request }: Route.ActionArgs) => {

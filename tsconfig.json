@@ -17,7 +17,10 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "paths": {
-      "~/*": ["./app/*"]
+      "~/*": ["./app/*"],
+      "@api/*": ["./app/api/*"],
+      "@web/*": ["./app/web/*"],
+      "@shared/*": ["./app/shared/*"]
     },
     "noEmit": true
   }

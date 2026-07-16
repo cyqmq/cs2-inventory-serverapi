@@ -15,18 +15,18 @@ import {
   parseInspectLink
 } from "@ianlucas/cs2-lib-inspect";
 import z from "zod";
-import { api } from "~/api.server";
-import { getUserIdFromRequest } from "~/auth.server";
-import { fetchCSFloatItemInfo } from "~/csfloat.server";
-import { middleware } from "~/middleware.server";
-import { craftAllowImportInspectLink } from "~/models/rule.server";
+import { api } from "@api/api.server";
+import { getUserIdFromRequest } from "@api/auth.server";
+import { fetchCSFloatItemInfo } from "@api/csfloat.server";
+import { middleware } from "@api/middleware.server";
+import { craftAllowImportInspectLink } from "@api/models/rule.server";
 import {
   badRequest,
   methodNotAllowed,
   tooManyRequests
-} from "~/responses.server";
-import { isValidInspectLink, keychainOffsetFactor } from "~/utils/economy";
-import { RateLimiter } from "~/utils/rate-limiter.server";
+} from "@api/responses.server";
+import { isValidInspectLink, keychainOffsetFactor } from "@shared/utils/economy";
+import { RateLimiter } from "@api/utils/rate-limiter.server";
 import type { Route } from "./+types/api.action.import-inspect-link";
 
 const rateLimiter = new RateLimiter(1000);

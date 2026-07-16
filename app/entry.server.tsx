@@ -6,12 +6,14 @@ import type { EntryContext } from "react-router";
 import { ServerRouter } from "react-router";
 import { PassThrough } from "node:stream";
 import { createReadableStreamFromReadable } from "@react-router/node";
-import { warmViewerCaches } from "./data/viewer.server";
-import { setupLogo } from "./logo.server";
-import { setupRules } from "./models/rule";
-import { scheduleInactivityReset } from "./routines/reset-inactive-inventory";
-import { setupPurge } from "./routines/setup-purge";
-import { setupTranslation } from "./translation.server";
+import { warmViewerCaches } from "@api/data/viewer.server";
+import { setupLogo } from "@api/logo.server";
+import { setupRules } from "@api/models/rule";
+import { scheduleInactivityReset } from "@api/routines/reset-inactive-inventory";
+import { setupPurge } from "@api/routines/setup-purge";
+import { setupTranslation } from "@api/translation.server";
+
+const isApiMode = process.env.API_MODE === "true";
 
 CS2Economy.load({ items: CS2_ITEMS, language: english });
 setupTranslation();
@@ -30,6 +32,13 @@ export default function handleRequest(
   responseHeaders: Headers,
   reactRouterContext: EntryContext
 ) {
+  if (isApiMode) {
+    responseHeaders.set("Content-Type", "application/json");
+    return new Response(JSON.stringify({ error: "Not found" }), {
+      status: 404,
+      headers: responseHeaders
+    });
+  }
   if (isbot(request.headers.get("user-agent"))) {
     return handleBotRequest(request, responseStatusCode, responseHeaders, reactRouterContext);
   }

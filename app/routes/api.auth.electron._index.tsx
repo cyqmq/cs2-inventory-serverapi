@@ -1,7 +1,7 @@
-import { middleware } from "~/middleware.server";
-import { commitSession, getSession } from "~/session.server";
-import { upsertUser } from "~/models/user.server";
-import { badRequest } from "~/responses.server";
+import { middleware } from "@api/middleware.server";
+import { commitSession, getSession } from "@api/session.server";
+import { upsertUser } from "@api/models/user.server";
+import { badRequest } from "@api/responses.server";
 import type { Route } from "./+types/api.auth.electron._index";
 
 const ELECTRON_SECRET = process.env.ELECTRON_AUTH_SECRET || "change-me-in-production";

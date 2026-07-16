@@ -4,25 +4,25 @@
  *--------------------------------------------------------------------------------------------*/
 
 import { z } from "zod";
-import { api } from "~/api.server";
-import { middleware } from "~/middleware.server";
+import { api } from "@api/api.server";
+import { middleware } from "@api/middleware.server";
 import {
   API_SCOPE,
   STATTRAK_INCREMENT_SCOPE,
   isApiKeyValid
-} from "~/models/api-credential.server";
+} from "@api/models/api-credential.server";
 import {
   existsUser,
   findUniqueUser,
   manipulateUserInventory
-} from "~/models/user.server";
+} from "@api/models/user.server";
 import {
   badRequest,
   methodNotAllowed,
   noContent,
   unauthorized
-} from "~/responses.server";
-import { nonNegativeInt } from "~/utils/shapes";
+} from "@api/responses.server";
+import { nonNegativeInt } from "@shared/utils/shapes";
 import type { Route } from "./+types/api.increment-item-stattrak._index";
 
 export const action = api(async ({ request }: Route.ActionArgs) => {

@@ -4,12 +4,12 @@
  *--------------------------------------------------------------------------------------------*/
 
 import { z } from "zod";
-import { api } from "~/api.server";
-import { middleware } from "~/middleware.server";
-import { generateAuthToken } from "~/models/api-auth-token.server";
-import { API_AUTH_SCOPE, isApiKeyValid } from "~/models/api-credential.server";
-import { existsUser } from "~/models/user.server";
-import { badRequest, methodNotAllowed, unauthorized } from "~/responses.server";
+import { api } from "@api/api.server";
+import { middleware } from "@api/middleware.server";
+import { generateAuthToken } from "@api/models/api-auth-token.server";
+import { API_AUTH_SCOPE, isApiKeyValid } from "@api/models/api-credential.server";
+import { existsUser } from "@api/models/user.server";
+import { badRequest, methodNotAllowed, unauthorized } from "@api/responses.server";
 import type { Route } from "./+types/api.sign-in._index";
 
 export const action = api(async ({ request }: Route.ActionArgs) => {
