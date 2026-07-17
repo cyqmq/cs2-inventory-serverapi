@@ -1,6 +1,6 @@
 {
   "name": "@cyqmq/cs2-inventory-api",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "description": "CS2 Inventory Simulator API Server",
   "type": "module",
   "scripts": {

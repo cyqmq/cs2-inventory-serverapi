@@ -1,11 +1,32 @@
-import { Links, Meta, Outlet, Scripts } from "react-router";
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Ian Lucas. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+import type { LinksFunction } from "react-router";
+import {
+  data,
+  Links,
+  Meta,
+  Outlet,
+  Scripts,
+  ScrollRestoration
+} from "react-router";
 import { DEFAULT_APP_NAME } from "./app-defaults";
 
+export const links: LinksFunction = () => [
+  { rel: "manifest", href: "/app.webmanifest" }
+];
+
 export async function loader() {
-  return {
-    rules: { appName: process.env.APP_NAME || DEFAULT_APP_NAME },
-    preferences: { language: process.env.DEFAULT_LANGUAGE || "english" }
-  };
+  return data({
+    rules: {
+      appName: DEFAULT_APP_NAME
+    },
+    preferences: {
+      language: undefined
+    }
+  });
 }
 
 export function Layout({ children }: { children: React.ReactNode }) {
@@ -19,6 +40,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         {children}
+        <ScrollRestoration />
         <Scripts />
       </body>
     </html>

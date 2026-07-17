@@ -3,23 +3,16 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-import { MetaFunction } from "react-router";
-import { loader as rootLoader } from "@web/root";
+import type { MetaFunction } from "react-router";
 import { DEFAULT_APP_NAME } from "./app-defaults";
-import { getSystemTranslation } from "@shared/utils/translation";
 
-export function getMetaTitle(
-  key?: string
-): MetaFunction<unknown, { root: typeof rootLoader }> {
+export function getMetaTitle(key?: string): MetaFunction {
   return function meta({ matches }) {
     const rootData = matches.find((match) => match.id === "root");
-    const appName = rootData?.loaderData?.rules.appName || DEFAULT_APP_NAME;
-    const pageTitle =
-      key !== undefined
-        ? getSystemTranslation(key, rootData?.loaderData?.preferences.language)
-        : undefined;
+    const rootMatchData = rootData?.loaderData as Record<string, any> | undefined;
+    const appName = rootMatchData?.rules?.appName || DEFAULT_APP_NAME;
     return [
-      { title: `${pageTitle !== undefined ? `${pageTitle} - ` : ""}${appName}` }
+      { title: `${key !== undefined ? `${key} - ` : ""}${appName}` }
     ];
   };
 }
