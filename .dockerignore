@@ -1,0 +1,11 @@
+node_modules
+.git
+.gitignore
+.env
+.env.*
+*.md
+tsconfig.*.json
+.vite
+.prettierrc
+eslint.config.*
+.editorconfig

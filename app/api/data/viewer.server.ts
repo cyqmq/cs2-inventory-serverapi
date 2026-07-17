@@ -35,13 +35,24 @@ function getViewerOrigin() {
   return new URL(VIEWER_EMBED_URL || DEFAULT_VIEWER_EMBED_URL).origin;
 }
 
+function getCustomTrustedHostnames(): string[] {
+  if (process.env.TRUSTED_HOSTNAMES === undefined) {
+    return [];
+  }
+  return process.env.TRUSTED_HOSTNAMES.split(",")
+    .map((h) => h.trim())
+    .filter((h) => h.length > 0);
+}
+
 function isTrustedHostname(hostname: string) {
-  return (
-    hostname === "localhost" ||
-    hostname === "127.0.0.1" ||
-    hostname === "cstrike.app" ||
-    hostname.endsWith(".cstrike.app")
-  );
+  if (hostname === "localhost" || hostname === "127.0.0.1") {
+    return true;
+  }
+  const custom = getCustomTrustedHostnames();
+  if (custom.some((h) => hostname === h || hostname.endsWith(h.startsWith(".") ? h : `.${h}`))) {
+    return true;
+  }
+  return false;
 }
 
 async function peekOriginAllowed(domain: string) {

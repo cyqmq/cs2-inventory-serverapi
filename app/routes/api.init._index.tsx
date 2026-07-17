@@ -36,7 +36,7 @@ export async function loader({ request }: Route.LoaderArgs) {
       assetsBaseUrl: nonEmptyString(ASSETS_BASE_URL),
       viewerEmbedUrl: nonEmptyString(VIEWER_EMBED_URL),
       viewerAssetsBaseUrl: nonEmptyString(VIEWER_ASSETS_BASE_URL),
-      cloudflareAnalyticsToken: CLOUDFLARE_ANALYTICS_TOKEN,
+      cloudflareAnalyticsToken: nonEmptyString(CLOUDFLARE_ANALYTICS_TOKEN),
       sourceCommit: SOURCE_COMMIT,
       viewerOriginAllowed: resolveViewerOriginAllowed({
         enabled: clientRules.viewerEnabled,

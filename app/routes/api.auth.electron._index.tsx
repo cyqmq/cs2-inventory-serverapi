@@ -2,9 +2,8 @@ import { middleware } from "@api/middleware.server";
 import { commitSession, getSession } from "@api/session.server";
 import { upsertUser } from "@api/models/user.server";
 import { badRequest } from "@api/responses.server";
+import { ELECTRON_AUTH_SECRET } from "@api/env.server";
 import type { Route } from "./+types/api.auth.electron._index";
-
-const ELECTRON_SECRET = process.env.ELECTRON_AUTH_SECRET || "change-me-in-production";
 
 export async function loader({ request }: Route.LoaderArgs) {
   await middleware(request);
@@ -14,7 +13,7 @@ export async function loader({ request }: Route.LoaderArgs) {
   const nickname = searchParams.get("nickname") || "Player";
   const avatarUrl = searchParams.get("avatar") || "";
 
-  if (!steamId || !secret || secret !== ELECTRON_SECRET) {
+  if (!steamId || !secret || secret !== ELECTRON_AUTH_SECRET) {
     throw badRequest;
   }
 
